@@ -1,20 +1,12 @@
-# tools/code_tools.py
-
 from utils.language_utils import detect_language_from_path
 import ast
 
 
-# ------------------------------------------------------------
-# LANGUAGE
-# ------------------------------------------------------------
 
 def detect_language(path: str) -> str:
     return detect_language_from_path(path)
 
 
-# ------------------------------------------------------------
-# METRICS (DETERMINISTIC)
-# ------------------------------------------------------------
 
 def code_metrics(content: str, language: str) -> dict:
     if language != "python":
@@ -34,9 +26,6 @@ def format_metrics(metrics: dict) -> str:
     return "\n".join(f"{k}: {v}" for k, v in metrics.items())
 
 
-# ------------------------------------------------------------
-# EXPLANATION (LLM)
-# ------------------------------------------------------------
 
 def explain_code(content, language, llm, system_prompt):
     messages = [
