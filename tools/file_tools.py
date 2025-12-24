@@ -1,5 +1,3 @@
-# tools/file_tools.py
-
 from utils.github_client import get_repo
 from storage.file_cache import get_file_cached, set_file_cached
 from config.settings import MAX_FILE_SIZE_KB
