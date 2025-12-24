@@ -58,7 +58,7 @@ This separation enforces clean reasoning boundaries and prevents hallucination.
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 ```text
 ARES/
