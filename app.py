@@ -14,10 +14,6 @@ from utils.formatting import format_error
 from storage.session_cache import clear_cache
 from storage.file_cache import clear_file_cache
 
-# -------------------------------------------------------------------
-# CONFIG
-# -------------------------------------------------------------------
-
 st.set_page_config(
     page_title="ARES - Agent for Repository Exploration & Structured-analysis",
     layout="wide",
@@ -28,9 +24,6 @@ st.title("ARES - Agent for Repository Exploration & Structured-analysis")
 USER_AVATAR = "assets/user.png"
 AGENT_AVATAR = "assets/agent.png"
 
-# -------------------------------------------------------------------
-# SESSION STATE
-# -------------------------------------------------------------------
 
 st.session_state.setdefault("repo_loaded", False)
 st.session_state.setdefault("repo_owner", None)
@@ -38,9 +31,6 @@ st.session_state.setdefault("repo_name", None)
 st.session_state.setdefault("chat_history", [])
 st.session_state.setdefault("chat_input", "")
 
-# -------------------------------------------------------------------
-# LLM
-# -------------------------------------------------------------------
 
 def get_llm():
     if LLM_PROVIDER == "groq":
@@ -60,9 +50,6 @@ def get_llm():
 
     raise RuntimeError("Unsupported LLM provider")
 
-# -------------------------------------------------------------------
-# SIDEBAR
-# -------------------------------------------------------------------
 
 st.sidebar.header("🔧 System Status")
 
@@ -100,16 +87,10 @@ if st.sidebar.button(" Clear Session "):
     clear_file_cache()
     st.rerun()
 
-# -------------------------------------------------------------------
-# REINIT REPO
-# -------------------------------------------------------------------
 
 if st.session_state.repo_loaded:
     init_repo(st.session_state.repo_owner, st.session_state.repo_name)
 
-# -------------------------------------------------------------------
-# MAIN
-# -------------------------------------------------------------------
 
 if not st.session_state.repo_loaded:
     st.info("Load a repository from the sidebar to begin.")
@@ -130,9 +111,6 @@ for role, text in st.session_state.chat_history:
         cols[0].image(AGENT_AVATAR, width=32)
         cols[1].code(text)
 
-# -------------------------------------------------------------------
-# CHAT INPUT (FORM = FIX)
-# -------------------------------------------------------------------
 
 with st.form("chat_form", clear_on_submit=True):
     user_input = st.text_input("Ask a question", key="chat_input")
