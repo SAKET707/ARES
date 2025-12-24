@@ -1,4 +1,3 @@
-# intents/classifier.py
 import re
 import json
 from enum import Enum
@@ -8,9 +7,6 @@ from pydantic import BaseModel, Field
 from config.prompts import INTENT_CLASSIFIER_PROMPT
 
 
-# -------------------------------------------------------------------
-# INTENT ENUM (SOURCE OF TRUTH)
-# -------------------------------------------------------------------
 
 class Intent(str, Enum):
     SHOW_REPO_TREE = "SHOW_REPO_TREE"
@@ -23,9 +19,6 @@ class Intent(str, Enum):
     GET_OWNER_INFO = "GET_OWNER_INFO"
 
 
-# -------------------------------------------------------------------
-# ENTITY SCHEMA
-# -------------------------------------------------------------------
 
 class IntentEntities(BaseModel):
     filename: Optional[str] = Field(
@@ -47,9 +40,6 @@ class IntentResult(BaseModel):
     entities: IntentEntities
 
 
-# -------------------------------------------------------------------
-# INTENT CLASSIFIER
-# -------------------------------------------------------------------
 
 
 def _extract_json(text: str) -> dict:
@@ -72,11 +62,11 @@ def classify_intent(llm, user_query: str) -> IntentResult:
     raw = response.content
 
     try:
-        # Case 1: already parsed dict
+ 
         if isinstance(raw, dict):
             data = raw
 
-        # Case 2: list of blocks
+
         elif isinstance(raw, list):
             text = "".join(
                 part.get("text", "")
@@ -85,7 +75,6 @@ def classify_intent(llm, user_query: str) -> IntentResult:
             )
             data = _extract_json(text)
 
-        # Case 3: string (may include prose or be empty)
         elif isinstance(raw, str):
             if not raw.strip():
                 raise ValueError("Empty LLM response")
