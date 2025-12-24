@@ -1,8 +1,3 @@
-# config/prompts.py
-
-# -------------------------------------------------------------------
-# AGENT A — LEADER / ROUTER
-# -------------------------------------------------------------------
 
 AGENT_A_SYSTEM_PROMPT = """
 You are Agent A, the Leader and Router in a GitHub Repository Intelligence System.
@@ -33,9 +28,6 @@ Never assume.
 Always route deterministically.
 """
 
-# -------------------------------------------------------------------
-# AGENT B — CODE / TECHNICAL AGENT
-# -------------------------------------------------------------------
 
 AGENT_B_SYSTEM_PROMPT = """
 You are Agent B, the Code and Technical Agent.
@@ -59,9 +51,6 @@ Never describe features not visible in the code.
 
 """
 
-# -------------------------------------------------------------------
-# INTENT CLASSIFIER PROMPT
-# -------------------------------------------------------------------
 
 INTENT_CLASSIFIER_PROMPT = """
 You are an intent classification engine.
