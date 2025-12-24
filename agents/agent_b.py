@@ -1,5 +1,3 @@
-# agents/agent_b.py
-
 from tools import file_tools, code_tools, dependency_tools
 from config.prompts import AGENT_B_SYSTEM_PROMPT
 
@@ -12,17 +10,11 @@ class AgentB:
     def __init__(self, llm):
         self.llm = llm
 
-    # ------------------------------------------------------------
-    # FILE DISPLAY
-    # ------------------------------------------------------------
 
     def show_file(self, path: str) -> str:
         content = file_tools.get_file_content(path)
         return content
 
-    # ------------------------------------------------------------
-    # CODE EXPLANATION
-    # ------------------------------------------------------------
 
     def explain_file(self, path: str) -> str:
         content = file_tools.get_file_content(path)
@@ -55,19 +47,12 @@ class AgentB:
         )
         return explanation
 
-    # ------------------------------------------------------------
-    # METRICS
-    # ------------------------------------------------------------
 
     def code_metrics(self, path: str) -> str:
         content = file_tools.get_file_content(path)
         language = code_tools.detect_language(path)
         metrics = code_tools.code_metrics(content, language)
         return code_tools.format_metrics(metrics)
-
-    # ------------------------------------------------------------
-    # DEPENDENCIES
-    # ------------------------------------------------------------
 
     def dependency_graph(self, path: str) -> str:
         content = file_tools.get_file_content(path)
