@@ -1,4 +1,3 @@
-# tools/dependency_tools.py
 
 import ast
 
