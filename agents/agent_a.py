@@ -1,5 +1,3 @@
-# agents/agent_a.py
-
 from intents.classifier import classify_intent, Intent
 from tools import repo_tools
 from agents.agent_b import AgentB
@@ -14,10 +12,6 @@ class AgentA:
         self.llm = llm
         self.agent_b = AgentB(llm)
 
-    # ------------------------------------------------------------
-    # ENTRY POINT
-    # ------------------------------------------------------------
-
     def handle_query(self, user_query: str) -> str:
         """
         Main entry point for all user queries.
@@ -26,10 +20,6 @@ class AgentA:
         intent_result = classify_intent(self.llm, user_query)
         intent = intent_result.intent
         entities = intent_result.entities
-
-        # -------------------------------
-        # ROUTING
-        # -------------------------------
 
         if intent == Intent.SHOW_REPO_TREE:
             return self._show_repo_tree()
@@ -61,9 +51,6 @@ class AgentA:
 
         raise ValueError(f"Unhandled intent: {intent}")
 
-    # ------------------------------------------------------------
-    # AGENT A HANDLERS (NO CODE READING)
-    # ------------------------------------------------------------
 
     def _show_repo_tree(self) -> str:
         tree = repo_tools.get_repo_tree()
@@ -112,9 +99,6 @@ class AgentA:
         path = self._resolve_file_path(filename)
         return self.agent_b.dependency_graph(path)
 
-    # ------------------------------------------------------------
-    # UTILITIES
-    # ------------------------------------------------------------
 
     def _resolve_file_path(self, filename: str) -> str:
         if not filename:
