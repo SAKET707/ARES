@@ -59,10 +59,6 @@ def _clean_readme(readme: str) -> str:
     return "\n\n".join(paragraphs)
 
 
-# ------------------------------------------------------------
-# REPO TREE
-# ------------------------------------------------------------
-
 def get_repo_tree(path="", depth=0):
     # cache only at root
     if path == "":
@@ -120,9 +116,6 @@ def format_repo_tree(tree, prefix=""):
 
 
 
-# ------------------------------------------------------------
-# FILE PATH RESOLUTION
-# ------------------------------------------------------------
 
 def find_file_path(filename: str):
     repo = get_repo()
@@ -140,9 +133,6 @@ def find_file_path(filename: str):
     return matches
 
 
-# ------------------------------------------------------------
-# README / REQUIREMENTS
-# ------------------------------------------------------------
 
 def get_readme():
     cached = get_cached("readme")
@@ -164,9 +154,6 @@ def get_requirements():
         return None
 
 
-# ------------------------------------------------------------
-# METADATA
-# ------------------------------------------------------------
 
 def get_repo_metadata():
     repo = get_repo()
@@ -188,10 +175,6 @@ Profile: {owner.html_url}
 Type: {owner.type}
 """
 
-
-# ------------------------------------------------------------
-# SUMMARY (LLM ALLOWED — README ONLY)
-# ------------------------------------------------------------
 
 def summarize_repo(readme: str, tree: list, metadata: dict) -> str:
     intro = _clean_readme(readme)
