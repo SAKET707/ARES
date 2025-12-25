@@ -42,13 +42,13 @@ ARES is intentionally conservative by design.
 
 ARES follows a **dual-agent architecture**:
 
-### Agent A — Leader / Router
+### Agent A - Leader / Router
 - Classifies user intent
 - Extracts entities (file names, line ranges)
 - Routes requests deterministically
 - Does **not** read or reason about code
 
-### Agent B — Code / Technical Agent
+### Agent B - Code / Technical Agent
 - Reads file content
 - Explains code strictly from source
 - Computes metrics and dependencies
